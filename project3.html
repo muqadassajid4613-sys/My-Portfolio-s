@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Project</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial;
+        }
+
+        body {
+            background: #0b0b1a;
+            color: white;
+        }
+
+        /* HERO */
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at top, rgba(168, 85, 247, 0.25), transparent 60%),
+                radial-gradient(circle at bottom, rgba(34, 211, 238, 0.25), transparent 60%);
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            color: #22d3ee;
+        }
+
+        .hero p {
+            margin-top: 15px;
+            color: #ccc;
+            font-size: 18px;
+        }
+
+        .btn {
+            margin-top: 30px;
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #22d3ee, #a855f7);
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.4s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(34, 211, 238, 0.3);
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 80px 8%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            text-align: center;
+        }
+
+        .card {
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            backdrop-filter: blur(10px);
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #22d3ee;
+            box-shadow: 0 0 25px rgba(34, 211, 238, 0.2);
+        }
+
+        .card h3 {
+            color: #22d3ee;
+            margin-bottom: 10px;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .cta h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div>
+            <h1>Modern Landing Page</h1>
+            <p>A clean, responsive and modern UI landing page design</p>
+            <a href="#features" class="btn">Explore More</a>
+        </div>
+    </div>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+
+        <div class="card">
+            <h3>Fast Performance</h3>
+            <p>Optimized design for speed and responsiveness.</p>
+        </div>
+
+        <div class="card">
+            <h3>Modern UI</h3>
+            <p>Clean glassmorphism and neon modern style.</p>
+        </div>
+
+        <div class="card">
+            <h3>Responsive</h3>
+            <p>Works perfectly on mobile, tablet and desktop.</p>
+        </div>
+
+    </section>
+
+    <!-- CTA -->
+    <div class="cta">
+        <h2>Ready to use this design?</h2>
+        <a href="index.html" class="btn">Back to Portfolio</a>
+    </div>
+
+    <footer>
+        © 2026 Landing Page Project — Built by Muqadas Sajid
+    </footer>
+
+    <script>
+        // =========================
+        // 1. Smooth scroll (Explore button)
+        // =========================
+        document.querySelectorAll('a[href^="#"]').forEach(btn => {
+            btn.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute("href"));
+
+                window.scrollTo({
+                    top: target.offsetTop - 70,
+                    behavior: "smooth"
+                });
+            });
+        });
+
+        // =========================
+        // 2. Scroll reveal animation
+        // =========================
+        const items = document.querySelectorAll(".card, .hero h1, .hero p, .cta h2");
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, { threshold: 0.2 });
+
+        items.forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = "translateY(40px)";
+            el.style.transition = "0.8s ease";
+            observer.observe(el);
+        });
+
+        // =========================
+        // 3. Button click animation
+        // =========================
+        const buttons = document.querySelectorAll(".btn");
+
+        buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                btn.style.transform = "scale(0.95)";
+                setTimeout(() => {
+                    btn.style.transform = "scale(1)";
+                }, 150);
+            });
+        });
+
+        // =========================
+        // 4. Hero text typing effect
+        // =========================
+        const heroTitle = document.querySelector(".hero h1");
+        const text = heroTitle.innerText;
+        heroTitle.innerText = "";
+
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                heroTitle.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, 70);
+            }
+        }
+        type();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Website Project</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial;
+        }
+
+        body {
+            background: #0b0b1a;
+            color: white;
+        }
+
+        /* HERO */
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: radial-gradient(circle at top, rgba(34, 211, 238, 0.25), transparent 60%),
+                radial-gradient(circle at bottom, rgba(168, 85, 247, 0.25), transparent 60%);
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            color: #a855f7;
+        }
+
+        .hero p {
+            margin-top: 15px;
+            color: #ccc;
+            font-size: 18px;
+        }
+
+        .btn {
+            margin-top: 30px;
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #a855f7, #22d3ee);
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.4s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
+        }
+
+        /* SERVICES */
+        .services {
+            padding: 80px 8%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            transition: 0.4s;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #a855f7;
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.25);
+        }
+
+        .card h3 {
+            color: #22d3ee;
+            margin-bottom: 10px;
+        }
+
+        /* ABOUT */
+        .about {
+            padding: 80px 8%;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #22d3ee;
+        }
+
+        .about p {
+            color: #ccc;
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #777;
+        }
+
+        /* ⭐ BACK BUTTON */
+        .back-btn {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .back-btn a {
+            display: inline-block;
+            padding: 14px 35px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #22d3ee, #a855f7);
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.4s;
+        }
+
+        .back-btn a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(34, 211, 238, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div>
+            <h1>Business Website</h1>
+            <p>Modern, professional and responsive business solution design</p>
+            <a href="#services" class="btn">Our Services</a>
+        </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+
+        <div class="card">
+            <h3>Web Development</h3>
+            <p>Modern and responsive websites for businesses.</p>
+        </div>
+
+        <div class="card">
+            <h3>Brand Design</h3>
+            <p>Creative branding and identity solutions.</p>
+        </div>
+
+        <div class="card">
+            <h3>Marketing</h3>
+            <p>Digital marketing strategies for growth.</p>
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+    <div class="about">
+        <h2>About Our Business</h2>
+        <p>
+            We provide modern digital solutions for startups and businesses.
+            Our goal is to create clean, fast and professional web experiences
+            that help brands grow online.
+        </p>
+    </div>
+
+    <!-- ⭐ BACK TO PORTFOLIO BUTTON -->
+    <div class="back-btn">
+        <a href="index.html">⬅ Back to Portfolio</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 Business Website Project — Designed by Muqadas Sajid
+    </footer>
+
+    <script>
+        // =========================
+        // 1. Smooth scroll for button
+        // =========================
+        document.querySelectorAll('a[href^="#"]').forEach(btn => {
+            btn.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute("href"));
+
+                window.scrollTo({
+                    top: target.offsetTop - 70,
+                    behavior: "smooth"
+                });
+            });
+        });
+
+        // =========================
+        // 2. Scroll reveal animation (cards + sections)
+        // =========================
+        const elements = document.querySelectorAll(".card, .about, .hero h1, .hero p");
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, { threshold: 0.2 });
+
+        elements.forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = "translateY(50px)";
+            el.style.transition = "0.8s ease";
+            observer.observe(el);
+        });
+
+        // =========================
+        // 3. Button click effect (nice pop animation)
+        // =========================
+        const btn = document.querySelector(".btn");
+
+        btn.addEventListener("click", () => {
+            btn.style.transform = "scale(0.95)";
+            setTimeout(() => {
+                btn.style.transform = "scale(1)";
+            }, 150);
+        });
+
+        // =========================
+        // 4. Page load animation
+        // =========================
+        window.addEventListener("load", () => {
+            document.querySelector(".hero h1").style.letterSpacing = "2px";
+            document.querySelector(".hero p").style.opacity = "1";
+        });
+    </script>
+
+</body>
+
+</html>
